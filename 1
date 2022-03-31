@@ -1,0 +1,71 @@
+data class Book(val name:String, val author:String, val year:Int) {}
+class Hranil() {
+    val hranil = arrayListOf<Book>()
+
+    fun add(book: Book) {
+        hranil.add(book)
+    }
+    fun delete(book: Book) {
+        hranil.remove(book)
+    }
+    fun show_all() {
+        print("Все книги, находящиеся в хранилище:\n")
+        for (i in hranil)
+        {
+            val n = i.name
+            val a = i.author
+            val y = i.year
+            print("$n, $a. $y год")
+            println()
+        }
+    }
+    fun show_book_author(author: String){
+        println("Все книги, которые написал(а) $author:")
+        for (i in hranil)
+        {
+            if (author == i.author){
+                print(i.name)
+                print(", год ")
+                print(i.year)
+                print(". ")
+                println()
+            }
+        }
+    }
+    fun show_book_year(year: Int){
+        println("Все книги, которые написаны в $year году:")
+        for (i in hranil)
+        {
+            if (year == i.year){
+                print(i.name)
+                print(", ")
+                print(i.author)
+                print(". ")
+                println()
+            }
+        }
+    }
+}
+
+fun main() {
+    val book1 = Book("Атака титанов.Том 1", "Хаздиме Исаяма", 2009)
+    val book2 = Book("Дорохедоро.Том 1","Хаяшида Ю", 2001)
+    val book3 = Book("Дорохедоро.Том 23","Хаяшида Ю", 2018)
+    val book4 = Book("Волейбол!!.Том 30", "Харуити Фурудатэ", 2018)
+
+    val hranil1 = Hranil()
+
+    hranil1.add(book1)
+    hranil1.add(book2)
+    hranil1.add(book3)
+    hranil1.add(book4)
+
+    hranil1.show_all()
+
+    hranil1.delete(book1)
+    hranil1.show_all()
+
+    hranil1.show_book_author("Хаяшида Ю")
+    hranil1.show_book_year(2018)
+
+}
