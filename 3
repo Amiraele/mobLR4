@@ -1,0 +1,61 @@
+import kotlin.random.Random
+import kotlin.random.nextInt
+
+abstract class Animal(){
+
+    abstract val vid_animal: String
+
+    fun gender(number:Int):String {
+        val male = Random.nextInt(0..number)
+        val female = Random.nextInt(0..number - male)
+        if (male == 1 && female == 1) {
+            return "В вольере $male самец и $female самка"
+        }
+        return ""
+    }
+    abstract fun sound(): String
+}
+class Lion():Animal(){
+    override val vid_animal = "Львы"
+    override fun sound(): String {
+        return "ARRRRR"
+    }
+}
+class Snake():Animal(){
+    override val vid_animal = "Змеи"
+    override fun sound(): String {
+        return "ssshhhh"
+    }
+}
+class Wolf():Animal(){
+    override val vid_animal = "Волки"
+    override fun sound(): String {
+        return "aaaauuuuu"
+    }
+}
+class Fox():Animal(){
+    override val vid_animal = "Лисы"
+    override fun sound(): String {
+        return "tyf-tyf-tyf"
+    }
+}
+class Aviary(val animal: Animal){
+    fun info_animal(){
+        println("Вольер: ${animal.vid_animal}")
+        println(animal.sound())
+        println(animal.gender(10))
+    }
+}
+
+fun main(){
+    val lions = Lion()
+    val snakes = Snake()
+    val wolfs = Wolf()
+    val foxes = Fox()
+    val aviary1 = Aviary(lions)
+    val aviary2 = Aviary(snakes)
+    val aviary3 = Aviary(wolfs)
+    val aviary4 = Aviary(foxes)
+    aviary1.info_animal()
+    aviary2.info_animal()
+}
