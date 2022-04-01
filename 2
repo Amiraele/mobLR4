@@ -1,0 +1,38 @@
+open class Seller(){
+
+    val product_list_s: ArrayList<String> = arrayListOf("яблоки", "апельсины", "черешня")
+
+    fun show_products_s(){
+        println(product_list_s)
+    }
+    fun sell_product(product_s: String, buyer: Buyer){
+        for (i in product_list_s){
+            if (product_s == i){
+                product_list_s.remove(i)
+                println("Товар $product_s продан")
+                buyer.buy_product(product_s)
+                break
+            }
+        }
+    }
+}
+class Buyer():Seller(){
+    val product_list_b: ArrayList<String> = arrayListOf()
+
+    fun show_products_b(){
+        println(product_list_b)
+    }
+    fun buy_product(product_b: String){
+        product_list_b.add(product_b)
+        println("Товар $product_b куплен")
+
+    }
+}
+fun main() {
+    val seller = Seller()
+    seller.show_products_s()
+    val buyer = Buyer()
+    buyer.show_products_b()
+    seller.sell_product("яблоки", buyer)
+    buyer.show_products_b()
+}
